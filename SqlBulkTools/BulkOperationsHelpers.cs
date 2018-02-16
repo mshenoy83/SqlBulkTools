@@ -296,7 +296,7 @@ namespace SqlBulkTools
             }
         }
 
-        internal SqlConnection GetSqlConnection(string connectionName, SqlCredential credentials, SqlConnection connection)
+        internal SqlConnection GetSqlConnection(string connectionName, SqlConnection connection)
         {
             SqlConnection conn = null;
 
@@ -309,7 +309,7 @@ namespace SqlBulkTools
             if (connectionName != null)
             {
                 conn = new SqlConnection(ConfigurationManager
-                    .ConnectionStrings[connectionName].ConnectionString, credentials);
+                    .ConnectionStrings[connectionName].ConnectionString);
                 return conn;
             }
 

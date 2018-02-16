@@ -28,7 +28,7 @@ namespace SqlBulkTools
         /// <exception cref="InvalidOperationException"></exception>
         /// <param name="connectionName"></param>
         /// <param name="credentials"></param>
-        public void CommitTransaction(string connectionName, SqlCredential credentials = null)
+        public void CommitTransaction(string connectionName)
         {
             if (connectionName == null)
                 throw new ArgumentNullException(nameof(connectionName) + " not given");
@@ -40,7 +40,7 @@ namespace SqlBulkTools
                 throw new InvalidOperationException("No setup found. Use the Setup method to build a new setup then try again.");
             
 
-            _transaction.CommitTransaction(connectionName, credentials);
+            _transaction.CommitTransaction(connectionName);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace SqlBulkTools
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
-        public async Task CommitTransactionAsync(string connectionName, SqlCredential credentials = null)
+        public async Task CommitTransactionAsync(string connectionName)
         {
             if (connectionName == null)
                 throw new ArgumentNullException(nameof(connectionName) + " not given");
@@ -64,7 +64,7 @@ namespace SqlBulkTools
             if (_transaction == null)
                 throw new InvalidOperationException("No setup found. Use the Setup method to build a new setup then try again.");
 
-            await _transaction.CommitTransactionAsync(connectionName, credentials);
+            await _transaction.CommitTransactionAsync(connectionName);
         }
 
 

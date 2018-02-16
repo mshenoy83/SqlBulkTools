@@ -124,7 +124,7 @@ namespace SqlBulkTools
             return this;
         }
 
-        void ITransaction.CommitTransaction(string connectionName, SqlCredential credentials, SqlConnection connection)
+        void ITransaction.CommitTransaction(string connectionName, SqlConnection connection)
         {
             if (!_list.Any())
             {
@@ -147,7 +147,7 @@ namespace SqlBulkTools
             // Must be after ToDataTable is called. 
             _helper.DoColumnMappings(_customColumnMappings, _columns, _matchTargetOn);
 
-            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, credentials, connection))
+            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, connection))
             {
                 conn.Open();
                 var dtCols = _helper.GetDatabaseSchema(conn, _schema, _tableName);
@@ -225,7 +225,7 @@ namespace SqlBulkTools
             }
         }
 
-        async Task ITransaction.CommitTransactionAsync(string connectionName, SqlCredential credentials, SqlConnection connection)
+        async Task ITransaction.CommitTransactionAsync(string connectionName, SqlConnection connection)
         {
             if (!_list.Any())
             {
@@ -248,7 +248,7 @@ namespace SqlBulkTools
             // Must be after ToDataTable is called. 
             _helper.DoColumnMappings(_customColumnMappings, _columns, _matchTargetOn);
 
-            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, credentials, connection))
+            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, connection))
             {
                 conn.Open();
                 var dtCols = _helper.GetDatabaseSchema(conn, _schema, _tableName);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -76,7 +75,7 @@ namespace SqlBulkTools
 
 
 
-        void ITransaction.CommitTransaction(string connectionName, SqlCredential credentials, SqlConnection connection)
+        void ITransaction.CommitTransaction(string connectionName, SqlConnection connection)
         {
             if (!_list.Any())
             {
@@ -93,7 +92,7 @@ namespace SqlBulkTools
             // Must be after ToDataTable is called. 
             _helper.DoColumnMappings(_customColumnMappings, _columns, _updateOnList);
 
-            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, credentials, connection))
+            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, connection))
             {
 
                 conn.Open();
@@ -157,7 +156,7 @@ namespace SqlBulkTools
         /// <param name="credentials"></param>
         /// <param name="connection"></param>
         /// <returns></returns>
-        async Task ITransaction.CommitTransactionAsync(string connectionName, SqlCredential credentials, SqlConnection connection)
+        async Task ITransaction.CommitTransactionAsync(string connectionName, SqlConnection connection)
         {
             if (!_list.Any())
             {
@@ -174,7 +173,7 @@ namespace SqlBulkTools
             // Must be after ToDataTable is called. 
             _helper.DoColumnMappings(_customColumnMappings, _columns, _updateOnList);
 
-            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, credentials, connection))
+            using (SqlConnection conn = _helper.GetSqlConnection(connectionName, connection))
             {
 
                 conn.Open();
