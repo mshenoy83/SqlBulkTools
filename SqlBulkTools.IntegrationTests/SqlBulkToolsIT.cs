@@ -4,8 +4,8 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFixture;
 using NUnit.Framework;
-using Ploeh.AutoFixture;
 using SqlBulkTools.IntegrationTests.Model;
 
 namespace SqlBulkTools.IntegrationTests
